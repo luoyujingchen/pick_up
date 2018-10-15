@@ -13,8 +13,13 @@ import file_handler.default_settings as DEFAULTS
 class BaseAttachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
     description = models.CharField(max_length=512,blank=True)
-    upload_time = models.DateTimeField(auto_created=True)
+    upload_time = models.DateTimeField(auto_created=True,blank=True)
     update_time = models.DateTimeField(auto_now=True)
+
+    def save(self, *args,**kwargs):
+        if not self.upload_time:
+            self.upload_time = datetime.datetime.now()
+        super(self,BaseAttachment).save(*args,**kwargs)
 
 
 class Img(BaseAttachment):
@@ -32,3 +37,4 @@ class Img(BaseAttachment):
         return fullpath
 
     file = models.FileField(upload_to=_upload_to, max_length=255)
+

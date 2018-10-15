@@ -13,7 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, re_path
+from file_handler import views
 
 urlpatterns = [
+    path('images/', views.ImgList.as_view(), name='images'),
+    re_path(r'^images/(?P<pk>[\w\-]*)/$', views.ImgDetail.as_view()),
+    path('upload',views.upload)
 ]
