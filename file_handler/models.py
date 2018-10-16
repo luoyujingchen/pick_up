@@ -19,7 +19,7 @@ class BaseAttachment(models.Model):
     def save(self, *args,**kwargs):
         if not self.upload_time:
             self.upload_time = datetime.datetime.now()
-        super(self,BaseAttachment).save(*args,**kwargs)
+        super().save(*args,**kwargs)
 
 
 class Img(BaseAttachment):
