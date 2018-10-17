@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="{% url 'entry' %}" method="post" enctype="multipart/form-data" >{%csrf_token%}
+    <input id="File1" name="fileupload" accept="image/gif, image/jpeg" multiple="multiple" type="file" value="" />
+    {{ form }}
+    <input id="" type="submit" value="上传" />
+</form>
+</body>
+</html>

@@ -35,5 +35,5 @@ class Img(BaseAttachment):
 
         return fullpath
 
-    file = models.FileField(upload_to=_upload_to, max_length=255)
+    file = models.FileField(upload_to=_upload_to)
 

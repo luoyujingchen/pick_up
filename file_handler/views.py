@@ -157,3 +157,4 @@ def multiuploader_delete(request, pk):
     else:
         log.info('Received not POST request to delete file view')
         return HttpResponseBadRequest('Only POST accepted')
+

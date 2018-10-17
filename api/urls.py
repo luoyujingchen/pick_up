@@ -18,5 +18,6 @@ from django.urls import path
 from api import views
 
 urlpatterns = [
-
+    path('entry/',views.EntryList.as_view(), name='entry'),
+    path('uploadentry/',views.ue)
 ]
