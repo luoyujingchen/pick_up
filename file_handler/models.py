@@ -12,7 +12,6 @@ import file_handler.default_settings as DEFAULTS
 # Create your models here.
 class BaseAttachment(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
-    description = models.CharField(max_length=512,blank=True)
     upload_time = models.DateTimeField(auto_created=True,blank=True)
     update_time = models.DateTimeField(auto_now=True)
 

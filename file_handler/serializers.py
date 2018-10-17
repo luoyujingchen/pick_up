@@ -4,9 +4,10 @@ from file_handler.models import Img
 
 
 class ImgSerializer(serializers.HyperlinkedModelSerializer):
-    file = serializers.FileField()
+    file = serializers.FileField(use_url=True)
     class Meta:
         model = Img
-        fields = ('id','description','upload_time','update_time','file')
+        fields = ('id','upload_time','update_time','file')
+
 
 

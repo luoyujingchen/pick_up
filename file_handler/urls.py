@@ -17,7 +17,12 @@ from django.urls import path, re_path
 from file_handler import views
 
 urlpatterns = [
-    path('images/', views.ImgList.as_view(), name='images'),
+    path('images/', views.ImgList.as_view()),
     re_path(r'^images/(?P<pk>[\w\-]*)/$', views.ImgDetail.as_view()),
-    path('upload',views.upload)
+    path('upload',views.upload),
+    path('fileupload/',views.fileupload, name='images'),
+    # re_path(r'^multiuploader_file/(?P<pk>[\w\-]*)/$', views.multi_show_uploaded,
+    #         name='multiuploader_file_link'),
+    re_path(r'^multiuploader_delete/(?P<pk>[\w\-]+)/$', views.multiuploader_delete,
+            name='multiuploader_delete'),
 ]
