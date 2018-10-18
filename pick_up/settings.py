@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'file_handler',
     'rest_framework',
     'api',
+    'base_file_server',
 ]
 
 MIDDLEWARE = [
