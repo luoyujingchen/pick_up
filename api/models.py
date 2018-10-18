@@ -20,5 +20,5 @@ class BaseEntry(models.Model):
 class Entry(BaseEntry):
     name = models.CharField(max_length=255)
     tags = models.CharField(max_length=255)
-    imgs = models.ManyToManyField(Img,null=True)
+    imgs = models.CharField(max_length=255)
     description = models.TextField(blank=True)

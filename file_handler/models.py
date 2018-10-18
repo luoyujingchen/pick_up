@@ -5,19 +5,20 @@ import uuid
 
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from django.utils.text import get_valid_filename
 
 import file_handler.default_settings as DEFAULTS
 
 # Create your models here.
 class BaseAttachment(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4().hex, editable=False)
     upload_time = models.DateTimeField(auto_created=True,blank=True)
     update_time = models.DateTimeField(auto_now=True)
 
     def save(self, *args,**kwargs):
         if not self.upload_time:
-            self.upload_time = datetime.datetime.now()
+            self.upload_time = timezone.now()
         super().save(*args,**kwargs)
 
 
@@ -37,3 +38,6 @@ class Img(BaseAttachment):
 
     file = models.FileField(upload_to=_upload_to)
 
+    def get_id(self):
+        str_id = self.id
+        return str_id
