@@ -1,11 +1,10 @@
 import json
 
 from django.core.serializers.json import DjangoJSONEncoder
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework import status
 
 from base_file_server.models import TypeImg
 
@@ -23,13 +22,13 @@ def deal_with_img(request):
             }]
 
             response_data = json.dumps(result,cls=DjangoJSONEncoder)
-            return HttpResponse(response_data,status=status.HTTP_201_CREATED)
+            return HttpResponse(response_data,status=201)
         else:
             result = [{
                 'error':'no file uploaded.'
             }]
             response_data = json.dumps(result)
-            return HttpResponse(response_data,status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(response_data,status=HttpResponseBadRequest)
     elif request.method == 'GET':
         """
         get img's url by pk.
@@ -42,19 +41,19 @@ def deal_with_img(request):
                 'modified': img.modified
             }]
             response_data = json.dumps(result, cls=DjangoJSONEncoder)
-            return HttpResponse(response_data, status=status.HTTP_200_OK)
+            return HttpResponse(response_data, status=200)
         else:
             result = [{
                 'error': 'need parameter pk.'
             }]
             response_data = json.dumps(result)
-            return HttpResponse(response_data, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(response_data, status=HttpResponseBadRequest)
     else:
         result = [{
             'error': 'wrong method.'
         }]
         response_data = json.dumps(result)
-        return HttpResponse(response_data, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse(response_data, status=HttpResponseBadRequest)
 
 
 def test_upload(request):
